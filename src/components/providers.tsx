@@ -1,6 +1,36 @@
 "use client";
 
+import posthog from "posthog-js";
 import { ThemeProvider } from "next-themes";
+
+const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST;
+
+if (typeof window !== "undefined") {
+  if (!posthogKey) {
+    if (process.env.NODE_ENV !== "production") {
+      throw new Error(
+        "NEXT_PUBLIC_POSTHOG_KEY variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once NEXT_PUBLIC_POSTHOG_KEY is configured"
+      );
+    }
+  } else if (!posthogHost) {
+    if (process.env.NODE_ENV !== "production") {
+      throw new Error(
+        "NEXT_PUBLIC_POSTHOG_HOST variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once NEXT_PUBLIC_POSTHOG_HOST is configured"
+      );
+    }
+  } else {
+    posthog.init(posthogKey, {
+      api_host: posthogHost,
+      capture_exceptions: true,
+      debug: process.env.NODE_ENV === "development",
+      logs: {
+        serviceName: "origin-site-web",
+        environment: process.env.NODE_ENV ?? "development",
+      },
+    });
+  }
+}
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
