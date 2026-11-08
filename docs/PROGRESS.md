@@ -2,7 +2,7 @@
 
 - [x] Kit copied, project scaffolded
 - [x] P0  Audit + repo check
-- [ ] P1  Design tokens + primitives
+- [x] P1  Design tokens + primitives
 - [ ] P2  App shell (header, footer, rulers, cursor point, theme)
 - [ ] P3  Hero field (canvas random walk, ticker, live Luxembourg time)
 - [ ] P4  Content layer + /work + case-study template
@@ -22,7 +22,11 @@
 - [ ] P18 (optional) i18n EN/FR/DE
 
 ## Decisions log
-(Cline: one line per non-obvious decision)
+- Added `src/lib/utils.ts` with `cn()` (clsx + tailwind-merge) for class composition
+- Fixed `tsconfig.json` paths: `@/*` → `src/*`, removed invalid `next/themes` types entry, fixed `noUncheckedIndexedAccess`
+- Added `.eslintrc.cjs` (Next.js was missing an ESLint config)
+- Fixed `package.json`: `posthog-js` version `^4.25.0` → `^1.150.0` (v4 doesn't exist on npm)
+- Added `next.config.mjs` with webpack `@/` alias for module resolution
 
 ## Known issues
 - Project bootstrapped manually; `pnpm install` and `pnpm build` need Node LTS + corepack enabled
