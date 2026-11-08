@@ -4,7 +4,7 @@
 - [x] P0  Audit + repo check
 - [x] P1  Design tokens + primitives
 - [x] P2  App shell (header, footer, rulers, cursor point, theme)
-- [ ] P3  Hero field (canvas random walk, ticker, live Luxembourg time)
+- [x] P3  Hero field (canvas random walk, ticker, live Luxembourg time)
 - [ ] P4  Content layer + /work + case-study template
 - [ ] P5  Timeline f(t) (curve + ledger)
 - [ ] P6  Studies + skills graph
@@ -32,7 +32,8 @@
 - Project bootstrapped manually; `pnpm install` and `pnpm build` need Node LTS + corepack enabled
 - `src/content/*` contains `placeholder: true` data — replace with verified facts per `docs/01` evidence checklist
 - Google Fonts (Fraunces/Instrument Sans/Martian Mono) may require CDN access; offline fallback needed
-- Signature viz components (`OriginField`, `CoordCursor`, `TimelineCurve`, `Globe`, `PlaneBoard`) in docs but thin wrappers need `src/lib/viz/` pure math functions
+- Signature viz components (`CoordCursor`, `TimelineCurve`, `Globe`, `PlaneBoard`) still need `src/lib/viz/` pure math functions
+- Hero is a server component; `OriginField` is a client canvas boundary so the headline stays server-rendered (LCP). The `(x, y)` readout lives inside `OriginField` (imperative DOM update) to avoid lifting mouse state into `Hero`. Canvas colors read from CSS vars; pauses via IntersectionObserver; cancels rAF on unmount; reduced motion renders the final frame once.
 - No `next.config.mjs` with CSP/security headers per `docs/02` stack setup
 - ESLint + Prettier configs need alignment with code rules (TypeScript strict, conventional commits)
 - Tailwind v4 config tokens must match `src/app/globals.css` CSS variables exactly

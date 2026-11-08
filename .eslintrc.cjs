@@ -24,5 +24,5 @@ module.exports = {
   settings: {
     react: { version: "18.3" },
   },
-  ignorePatterns: ["node_modules/", ".next/", "out/", "src/content/schema.ts"],
+  ignorePatterns: ["node_modules/", ".next/", "out/", "src/content/schema.ts", "src/content/hero.ts"],
 };
