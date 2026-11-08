@@ -3,7 +3,7 @@
 - [x] Kit copied, project scaffolded
 - [x] P0  Audit + repo check
 - [x] P1  Design tokens + primitives
-- [ ] P2  App shell (header, footer, rulers, cursor point, theme)
+- [x] P2  App shell (header, footer, rulers, cursor point, theme)
 - [ ] P3  Hero field (canvas random walk, ticker, live Luxembourg time)
 - [ ] P4  Content layer + /work + case-study template
 - [ ] P5  Timeline f(t) (curve + ledger)
@@ -39,3 +39,4 @@
 - Reduced-motion fallback tested: all canvas/canvas transitions must have static final state
 - Cloudflare Turnstile + Supabase RLS need actual account setup (free tier limits: 2 active projects)
 - `SUPABASE_SERVICE_ROLE_KEY` and `TURNSTILE_SECRET_KEY` are server-only — never prefix with `NEXT_PUBLIC_`
+- P2 shell: Header/Ticker/CoordCursor are client components (state/effects/events); Footer/Rulers stay server. Theme icon guarded by local mount state (next-themes 0.4.4 has no `mounted` export) to avoid hydration mismatch. `status` segment rendered literally ("online", TODO) deferred to P11/P14. Rulers gated via CSS media queries (pointer: coarse / reduced-motion / narrow).

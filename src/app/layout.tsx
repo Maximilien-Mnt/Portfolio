@@ -2,6 +2,11 @@ import type { Metadata, Viewport } from "next";
 import { fraunces, instrument, martian } from "@/lib/fonts";
 import { Providers } from "@/components/providers";
 import { site } from "@/config/site";
+import { Ticker } from "@/components/sections/Ticker";
+import { Header } from "@/components/sections/Header";
+import { Footer } from "@/components/sections/Footer";
+import { Rulers } from "@/components/sections/Rulers";
+import { CoordCursor } from "@/components/sections/CoordCursor";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -28,7 +33,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <a href="#main" className="skip-link">Skip to content</a>
         <Providers>
+          <Ticker />
+          <Header />
           <main id="main">{children}</main>
+          <Footer />
+          <CoordCursor />
+          <Rulers />
         </Providers>
       </body>
     </html>

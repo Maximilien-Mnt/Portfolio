@@ -133,3 +133,12 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Desktop-only flourishes: rulers + custom cursor are disabled on touch,
+   narrow viewports and under prefers-reduced-motion. */
+@media (pointer: coarse), (max-width: 767px), (prefers-reduced-motion: reduce) {
+  .rulers,
+  .coord-cursor {
+    display: none !important;
+  }
+}
