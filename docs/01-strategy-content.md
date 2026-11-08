@@ -1,17 +1,21 @@
 # 01 — Strategy & content
 
 ## Positioning (chosen for you — change freely)
+
 **"I like problems that take a long time to solve."**
 The thread through everything you do: a maths turnaround built over two years, nearly 20 marathons and several ultras, a ~12,000-word business plan that became a full-stack app (Pulse), years of self-taught code. *Long-distance thinking.* It is specific, true, memorable, and it fits Maths, CS, Management and Finance equally.
 Alternates: "Maths, software and markets — measured from Luxembourg." · "Building slowly, on purpose."
 
 ## Audience (in order)
+
 1. Admissions readers, professors, interviewers, alumni (UK / US / CA / FR / SG) — need credibility in 60 seconds and evidence behind every claim.
 2. Programme, competition and internship organisers.
 3. Peers, collaborators, and future-you.
+
 Reality check: many admissions offices will not browse a personal site. Use it where it is welcome (optional portfolio / additional-info fields, interviews, CV and email signature) and never let it replace the application. Put nothing on it you would not say out loud in an interview.
 
 ## Assumptions (change any of them)
+
 | # | Assumption |
 |---|---|
 | 1 | Your name is unknown to me → `Your Name` placeholder in `src/config/site.ts`. |
@@ -24,7 +28,9 @@ Reality check: many admissions offices will not browse a personal site. Use it w
 | 8 | Default theme follows the visitor's system: light "Paper" or dark "Blueprint". |
 
 ## What goes on the site
+
 ### Core (launch)
+
 - **Hero**: name, the positioning line, three proof chips (e.g. "~20 marathons", "Pulse — full-stack app", "Kangourou ×2"), live Luxembourg time.
 - **Claims & Proofs** (About): three claims, each with evidence you can click.
   1. *"I stick with hard things."* → maths went from weakest to favourite subject; marathons and ultras.
@@ -36,15 +42,19 @@ Reality check: many admissions offices will not browse a personal site. Use it w
 - **Contact**: a real address (`hello@yourdomain` via Cloudflare Email Routing) + form with Turnstile.
 
 ### "More than a portfolio" (v0.2+)
+
 Lab (interactive maths/finance demos) · Notes (short maths/finance/CS writing with equations) · Atlas (globe of destinations) · Plane (guestbook that plots points) · Now page · Colophon (how it is built, live stats) · Terminal mode · Private HQ (applications tracker).
 
 ### Maybe — decide deliberately
+
 Grades / predicted grades (only if strong, on Studies not Hero) · a teacher quote (with permission) · one portrait + three in-context photos · aggregated running stats (distance, count, PBs).
 
 ### Never
+
 Home address · phone · exact birth date · ID numbers · GPS routes that start or end at home (use aggregates) · classmates' faces without consent · the UCAS statement text before it is submitted · anything under NDA.
 
 ## Emphasis per region (tendencies — always check each programme's current requirements)
+
 | Region | Tends to value | Feature more |
 |---|---|---|
 | UK (UCAS) | Subject depth, academic curiosity | Notes, favourite maths areas, books, Kangourou, Lab |
@@ -54,6 +64,7 @@ Home address · phone · exact birth date · ID numbers · GPS routes that start
 | Singapore | Rigorous academics, competitions, tech | Kangourou, Lab, projects, internship |
 
 ## Evidence checklist (your homework)
+
 - [ ] Final name, one good portrait, links (GitHub, LinkedIn)
 - [ ] Dates: first code, maths turnaround, each marathon/ultra (date, distance, time), Kangourou years/results, internship dates, Pulse milestones, E-Comm role + dates
 - [ ] Permissions: teacher quote, E-Comm committee, Ilres mention
@@ -61,7 +72,9 @@ Home address · phone · exact birth date · ID numbers · GPS routes that start
 - [ ] Writing: bio in 3 lengths (50 / 150 / 300 words), 3 case-study drafts (problem → approach → result → what I would do differently), 5 short notes
 
 ## Voice
+
 Short sentences. First person. Precise but warm, a little dry. Show, then claim. Maths wit in small doses.
+
 - Hero: "I like problems that take a long time to solve."
 - Buttons: *See the proof* · *Plot a message* · *Open the timeline*
 - 404: "No point at these coordinates."
