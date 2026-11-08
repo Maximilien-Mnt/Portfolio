@@ -1,0 +1,66 @@
+import { z } from "zod";
+import { Project } from "./schema";
+
+// Placeholder copy — rewrite in your own words. Stack for Pulse reflects what you described.
+export const projects = z.array(Project).parse([
+  {
+    slug: "pulse",
+    title: "Pulse",
+    tagline: "A sports-focused social app, built solo — from a school business plan to working software.",
+    type: "app",
+    status: "in-progress",
+    year: 2026,
+    stack: ["Expo", "React Native", "Supabase", "Cloudflare", "PostHog", "GitHub"],
+    tracks: ["code", "markets"],
+    featured: true,
+    placeholder: true,
+  },
+  {
+    slug: "ecomm-website",
+    title: "Ecology Committee website",
+    tagline: "A trilingual, hand-coded site for a 15-member school committee.",
+    type: "website",
+    status: "in-progress",
+    year: 2026,
+    stack: [], // TODO
+    tracks: ["code"],
+    featured: true,
+    placeholder: true,
+  },
+  {
+    slug: "business-plan",
+    title: "The business plan",
+    tagline: "~12,000 words: projections, GDPR and a funding strategy — where Pulse began.",
+    type: "paper",
+    status: "archived",
+    year: 2025,
+    stack: [],
+    tracks: ["markets"],
+    featured: true,
+    placeholder: true,
+  },
+  {
+    slug: "origin",
+    title: "Origin (this site)",
+    tagline: "A portfolio drawn on a coordinate plane.",
+    type: "website",
+    status: "in-progress",
+    year: 2026,
+    stack: ["Next.js", "Tailwind", "Motion", "Supabase", "PostHog", "Vercel"],
+    tracks: ["code"],
+    featured: false,
+    placeholder: true,
+  },
+  {
+    slug: "ilres-internship",
+    title: "IT internship at Ilres SA",
+    tagline: "Two weeks in a Luxembourg research institute's IT department.",
+    type: "experience",
+    status: "archived",
+    year: 2025,
+    stack: [],
+    tracks: ["code"],
+    featured: false,
+    placeholder: true,
+  },
+]);

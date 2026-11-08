@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ORIGIN — style tile v0.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..600,0..100,0..1&family=Instrument+Sans:wght@400..600&family=Martian+Mono:wght@300..500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f0e8;--bg-2:#e9e5da;--fg:#0d1524;--fg-2:#4a5468;--fg-3:#7a8396;--line:rgb(13 21 36/.14);--grid:rgb(13 21 36/.06);--signal:#e8402a;--signal-ink:#c22f1b;--azure:#0a7bb5;--gold:#b8892a;--moss:#3e7b5a;--snap:cubic-bezier(.22,1,.36,1)}
+html.dark{--bg:#0a1020;--bg-2:#111a2e;--fg:#ece8dd;--fg-2:#a3acbf;--fg-3:#6f7a91;--line:rgb(236 232 221/.14);--grid:rgb(236 232 221/.05);--signal:#ff5a3c;--signal-ink:#ff7a60;--azure:#3dbbf2;--gold:#e3b84f;--moss:#6fcb9f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 "Instrument Sans",system-ui,sans-serif;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px;transition:background-color .24s}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 96px}
+.label{font:400 .72rem "Martian Mono",ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-2)}
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;letter-spacing:-.02em;font-weight:300;margin:0}
+h1{font-size:clamp(2.8rem,8vw,7rem);line-height:.96;font-variation-settings:"SOFT" 50,"WONK" 1}
+h2{font-size:clamp(1.6rem,3vw,2.4rem);margin:8px 0 20px}
+.top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}
+button{font:inherit;cursor:pointer}
+.btn{border-radius:6px;padding:12px 20px;border:1px solid var(--line);background:transparent;color:var(--fg);transition:transform .12s var(--snap)}
+.btn:hover{transform:translateY(-1px)}
+.btn.p{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn.p:hover::after{content:" ●";color:var(--signal)}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+.hero{position:relative;padding:72px 0 56px;min-height:520px;margin-bottom:24px}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero .in{position:relative;pointer-events:none}.hero .in *{pointer-events:auto}
+.hero p.s{max-width:34rem;color:var(--fg-2);margin:24px 0}
+.dot{color:var(--signal)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 28px}
+.tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:2px;padding:4px 10px;font:400 .72rem "Martian Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
+.tag i{width:8px;height:8px;border-radius:50%;display:inline-block}
+section{padding:48px 0;border-top:1px solid var(--line)}
+.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.sw div{border:1px solid var(--line);border-radius:2px;padding:12px;height:96px;display:flex;flex-direction:column;justify-content:flex-end}
+.plate{position:relative;border:1px solid var(--line);border-radius:2px;padding:24px;background:color-mix(in srgb,var(--bg) 90%,transparent)}
+.plate:hover{background:var(--bg-2)}
+.plate::before,.plate::after{content:"+";position:absolute;font:12px/1 "Martian Mono",monospace;color:var(--fg-3)}
+.plate::before{top:-7px;left:-4px}.plate::after{bottom:-7px;right:-4px}
+.grid3{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.claim{border-left:2px solid var(--signal);padding:8px 0 8px 20px}
+.claim p{font:300 1.5rem/1.25 "Fraunces",serif;margin:6px 0 10px}
+.claim a{color:var(--signal-ink)}
+input{font:inherit;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:6px;padding:12px;width:100%}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><span class="label">ORIGIN · style tile v0.1 · 49.6116°N 6.1319°E</span><button class="btn" id="theme" aria-label="Toggle theme">Light / Dark</button></div>
+
+  <div class="hero" id="hero">
+    <canvas id="field" aria-hidden="true"></canvas>
+    <div class="in">
+      <p class="label">§01 · <span id="xy">(x 0.00, y 0.00)</span> · click the field to reseed</p>
+      <h1 style="margin-top:20px">I like problems that take a long time to solve<span class="dot">.</span></h1>
+      <p class="s">Maths, software and markets — built from Luxembourg.</p>
+      <div class="chips"><span class="tag"><i style="background:var(--moss)"></i>~20 marathons</span><span class="tag"><i style="background:var(--signal)"></i>Pulse — full-stack app</span><span class="tag"><i style="background:var(--azure)"></i>Kangourou ×2</span></div>
+      <button class="btn p">See the proof</button> <button class="btn">Open the timeline</button>
+    </div>
+  </div>
+
+  <section>
+    <p class="label">§02 · Color</p><h2>Paper, ink, one Signal.</h2>
+    <div class="sw">
+      <div style="background:var(--bg)"><span class="label">bg</span></div>
+      <div style="background:var(--bg-2)"><span class="label">bg-2</span></div>
+      <div style="background:var(--fg);color:var(--bg)"><span class="label" style="color:var(--bg)">fg</span></div>
+      <div style="background:var(--signal)"><span class="label" style="color:var(--bg)">signal &lt;2%</span></div>
+      <div style="background:var(--azure)"><span class="label" style="color:var(--bg)">azure · maths</span></div>
+      <div style="background:var(--gold)"><span class="label" style="color:var(--bg)">gold · markets</span></div>
+      <div style="background:var(--moss)"><span class="label" style="color:var(--bg)">moss · endurance</span></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">§03 · Type</p><h2>Voice, body, data.</h2>
+    <div class="grid3">
+      <div><p class="label">Fraunces — display</p><p style="font:300 2.4rem/1.05 Fraunces,serif;margin:8px 0">Long-distance thinking</p></div>
+      <div><p class="label">Instrument Sans — body</p><p>Short sentences. First person. Precise but warm, a little dry. Show, then claim.</p></div>
+      <div><p class="label">Martian Mono — data</p><p class="label" style="font-size:.9rem;color:var(--fg)">LUX 14:32:07 · f(t) = ∫ w(e) dt</p></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">§04 · Components</p><h2>Plates, claims, filters.</h2>
+    <div class="grid3">
+      <div class="plate"><p class="label">§04.1 · app</p><h3 style="font-size:1.8rem;margin:8px 0">Pulse</h3><p style="color:var(--fg-2);margin:0">A sports-focused social app, built solo.</p></div>
+      <div class="claim"><span class="label">Claim 1</span><p>I stick with hard things.</p><a href="#">Proof →</a></div>
+      <div><p class="label">Track filter</p>
+        <div class="chips" style="margin-top:10px"><span class="tag"><i style="background:var(--azure)"></i>Maths</span><span class="tag"><i style="background:var(--signal)"></i>Code</span><span class="tag"><i style="background:var(--gold)"></i>Markets</span><span class="tag"><i style="background:var(--moss)"></i>Endurance</span></div>
+        <label class="label" for="m">Plot a message</label><input id="m" placeholder="140 characters…" style="margin-top:8px"></div>
+    </div>
+  </section>
+  <p class="label" style="padding-top:24px">404 · No point at these coordinates.</p>
+</div>
+
+<script>
+const root=document.documentElement;
+document.getElementById('theme').onclick=()=>root.classList.toggle('dark');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const c=document.getElementById('field'),ctx=c.getContext('2d'),hero=document.getElementById('hero'),xy=document.getElementById('xy');
+let W,H,dpr,seed=7,pts=[],mouse={x:.5,y:.5},t0=performance.now(),head={x:0,y:0};
+const rng=s=>()=>(s=(s*1664525+1013904223)>>>0)/4294967296;
+function gen(){const r=rng(seed*9973+11);pts=[];let y=0;for(let i=0;i<260;i++){y+=(r()-.5)*.14+.002;pts.push(y)}}
+function size(){dpr=devicePixelRatio||1;W=hero.clientWidth;H=hero.clientHeight;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+const css=n=>getComputedStyle(root).getPropertyValue(n).trim();
+function draw(now){
+  const reveal=reduce?1:Math.min(1,(now-t0)/2600);
+  ctx.clearRect(0,0,W,H);
+  const cx=W/2,cy=H/2;
+  ctx.strokeStyle=css('--grid');ctx.lineWidth=1;
+  for(let x=cx%32;x<W;x+=32){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}
+  for(let y=cy%32;y<H;y+=32){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+  ctx.strokeStyle=css('--fg-3');ctx.beginPath();ctx.moveTo(0,cy);ctx.lineTo(W,cy);ctx.moveTo(cx,0);ctx.lineTo(cx,H);ctx.stroke();
+  ctx.fillStyle=css('--fg-3');ctx.font='10px "Martian Mono",monospace';
+  for(let k=-5;k<=5;k++){if(k)ctx.fillText(String(k),cx+k*128+3,cy+12)}
+  const n=Math.floor(pts.length*reveal),sx=W/(pts.length-1);
+  const drift=(mouse.y-.5)*H*.25;
+  ctx.strokeStyle=css('--signal');ctx.lineWidth=2;ctx.lineJoin='round';ctx.beginPath();
+  for(let i=0;i<n;i++){const x=i*sx,y=cy-pts[i]*H*.55+drift*(i/pts.length);i?ctx.lineTo(x,y):ctx.moveTo(x,y);head={x,y}}
+  ctx.stroke();
+  if(n>1){ctx.fillStyle=css('--signal');ctx.beginPath();ctx.arc(head.x,head.y,5,0,7);ctx.fill();ctx.strokeStyle=css('--fg');ctx.lineWidth=1;ctx.beginPath();ctx.arc(head.x,head.y,10,0,7);ctx.stroke()}
+  ctx.strokeStyle=css('--fg-2');ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(mouse.x*W,0);ctx.lineTo(mouse.x*W,H);ctx.moveTo(0,mouse.y*H);ctx.lineTo(W,mouse.y*H);ctx.stroke();ctx.setLineDash([]);
+  if(!reduce&&reveal<1)requestAnimationFrame(draw)
+}
+function redraw(){requestAnimationFrame(draw)}
+hero.addEventListener('mousemove',e=>{const r=hero.getBoundingClientRect();mouse.x=(e.clientX-r.left)/r.width;mouse.y=(e.clientY-r.top)/r.height;xy.textContent=`(x ${((mouse.x-.5)*10).toFixed(2)}, y ${((.5-mouse.y)*10).toFixed(2)})`;redraw()});
+hero.addEventListener('click',e=>{if(e.target.closest('button,a'))return;seed++;gen();t0=performance.now();redraw()});
+addEventListener('resize',()=>{size();redraw()});
+new MutationObserver(redraw).observe(root,{attributes:true});
+gen();size();redraw();
+</script>
+</body>
+</html>
