@@ -5,7 +5,7 @@
 - [x] P1  Design tokens + primitives
 - [x] P2  App shell (header, footer, rulers, cursor point, theme)
 - [x] P3  Hero field (canvas random walk, ticker, live Luxembourg time)
-- [ ] P4  Content layer + /work + case-study template
+- [x] P4  Content layer + /work + case-study template
 - [ ] P5  Timeline f(t) (curve + ledger)
 - [ ] P6  Studies + skills graph
 - [ ] P7  About: Claims & Proofs + Endurance + /now
@@ -22,6 +22,7 @@
 - [ ] P18 (optional) i18n EN/FR/DE
 
 ## Decisions log
+
 - Added `src/lib/utils.ts` with `cn()` (clsx + tailwind-merge) for class composition
 - Fixed `tsconfig.json` paths: `@/*` → `src/*`, removed invalid `next/themes` types entry, fixed `noUncheckedIndexedAccess`
 - Added `.eslintrc.cjs` (Next.js was missing an ESLint config)
@@ -29,6 +30,7 @@
 - Added `next.config.mjs` with webpack `@/` alias for module resolution
 
 ## Known issues
+
 - Project bootstrapped manually; `pnpm install` and `pnpm build` need Node LTS + corepack enabled
 - `src/content/*` contains `placeholder: true` data — replace with verified facts per `docs/01` evidence checklist
 - Google Fonts (Fraunces/Instrument Sans/Martian Mono) may require CDN access; offline fallback needed

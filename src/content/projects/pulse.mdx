@@ -1,0 +1,95 @@
+---
+title: "Pulse"
+slug: "pulse"
+year: 2026
+type: "app"
+status: "in-progress"
+summary: "A sports-focused social app, built solo — from a school business plan to working software."
+---
+
+> **Draft v0.1 (placeholder).** Every date, figure and quoted line below is a **placeholder** — replace with verified facts before publishing.
+
+## Abstract
+
+Pulse is a sports-focused social app, built solo (2024–2026). What started as a ~12,000-word school business plan (see `business-plan`, **markets**) became working software: feed, chat, auth, moderation. The core question driving the build is whether a lightweight, track-first feed can compete with the walled gardens — without the guilt.
+
+$$P(\text{retention}) \propto \frac{\text{velocity}}{\text{noise} + \lambda \cdot \text{ego}}$$
+
+<div class="note">
+  <span class="label">status</span>
+  <span class="text-fg-2">in-progress · MVP shipped · moderation pipeline in review</span>
+</div>
+
+## Context
+
+The founding brief:
+
+- **Audience**: 16–25, recreational runners, cyclists and swimmers.
+- **Problem**: existing platforms optimise for outrage and streaks; they do not honour *recovery* or *variety*.
+- **Constraint**: built solo, no VC runway, six-month minimum viable loop.
+
+The stack above is honest — every runtime dependency that survived the 2026 rewrite is listed in `stack`. Two technical decisions shaped everything that followed:
+
+1. **Server-rendered shell, client for the interactive layers** — first pass was a monolith; the rewrite split the data layer (Supabase + RLS) from the presentation.
+2. **Event sourcing for workout entries** — the feed is a materialised view over append-only `workout_events`; corrections are stored, not overwritten.
+
+## Method
+
+### Architecture
+
+```
+┌──────────────┐   HTTPS      ┌──────────────┐   JWT         ┌──────────────┐
+│   Expo app   │─────────────▶│    Edge      │──────────────▶│   Supabase   │
+│  (React N.)  │              │  (Cloudfl.)  │               │  (Postgres   │
+└──────────────┘              └──────────────┘               │   + RLS)     │
+       ▲                                           ▲           └──────────────┘
+       │                                           │  anonymous counters
+       │            PostHog events                 │    (aggregate only)
+       └─────────────── analytics ─────────────────┘
+```
+
+### Data model (simplification)
+
+Every `workout_event` carries `user_id`, `kind` (±1 for self/other), `distance` (km), `duration` (s), `ts`. The feed is a **cursor-paginated projection** ordered by `ts DESC`, filtered by `track` + `visible`.
+
+### Workflow
+
+1. **Auth** — Supabase Magic Link + OAuth (Apple / Google). `anon` service key never reaches the client; RLS scopes each row to the session.
+2. **Create** — client validates with a small set of zod rules (distance > 0, duration > 0, kind ∈ a fixed enum), then `INSERT` into `workout_events`.
+3. **Feed** — server-side query with `LIMIT 20` + `WHERE ts < last_id`, materialised in ~80 ms on a t3.small.
+4. **Moderation** — every message passes a rule engine (profanity list + rate limiter + human review flag). No model inference at v0.1.
+
+## Result
+
+| Metric (v0.1, n=47 active users) | Value |
+|---|---|
+| MAU (synthetic, 28-day) | 1 182 |
+| Retention Day-7 | 38 % |
+| Median workout duration | 42 min |
+| Avg. distance per session | 5.8 km |
+| Crash-free sessions | 99.2 % |
+
+> ⚠️ *Numbers above are placeholders — replace with the analytics dashboard for the real figures.*
+
+The MVP loop (author → log → see own feed) was announced to be working within **six weeks** of the rewrite. Week-1 churn was the highest cost line item.
+
+## What I would do differently
+
+1. **Strip the feed to the minimum.** The current "trending" list is a heavy, expensive page; I would ship a simple chronological list and a "suggested" tab as a WIP enhancement.
+2. **Move moderation to the edge.** A Cloudflare Worker that runs the rule engine *before* the request reaches the origin would cut origin load by ~40 % and halve the human-review queue.
+3. **Automate the onboarding.** The first-run trophy + a "your first 3 km" guided tour cut day-1 drop-off by ~14 %; I would build that reflex sooner.
+4. **Instrument earlier.** I shipped v0.1 without the PostHog tracking on the "forgot password" flow. The support tickets I got would have been avoided.
+5. **Avoid the mono-repo temptation.** App + web + admin all in one Next.js repo sounds tidy. In practice it made the feature flags harder to reason about.
+
+## Links
+
+- [GitHub repository](https://github.com/Maximilien-Mnt/pulse) (placeholder)
+- [Play Store listing](https://play.google.com/store/apps) (placeholder)
+- [PostHog product analytics dashboard](https://posthog.com/) (placeholder)
+- [Design doc · v0.3](https://www.notion.so) (placeholder)
+
+---
+
+**Q.E.D.**
+
+> *"Speed is a byproduct of clarity — of a system whose shape matches the problem."* — **Maximilien Montant**, Luxembourg, 2026.

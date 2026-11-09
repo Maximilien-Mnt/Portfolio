@@ -39,3 +39,74 @@ export const Project = z.object({
   placeholder: z.boolean().default(false),
 });
 export type Project = z.infer<typeof Project>;
+
+/** ─── Study / academic content ──────────────────────────────────────────── */
+
+export const Subject = z.object({
+  id: z.string(),
+  name: z.string(),
+  language: z.enum(["EN", "DE", "FR"]),
+  level: z.string().max(120),
+  grade: z.number().min(1).max(6).optional(),
+  placeholder: z.boolean().default(false),
+});
+export type Subject = z.infer<typeof Subject>;
+
+export const Competition = z.object({
+  id: z.string(),
+  name: z.string(),
+  level: z.string().max(120), // e.g. "Kangourou des Mathématiques (90%+)"
+  period: z.string().max(120), // e.g. "March 2025"
+  result: z.string().max(120).optional(),
+  placeholder: z.boolean().default(false),
+});
+export type Competition = z.infer<typeof Competition>;
+
+/** ─── Skills constellation ────────────────────────────────────────────────── */
+
+export const Skill = z.object({
+  id: z.string(),
+  name: z.string(),
+  category: z.enum(["code", "maths", "markets", "endurance", "communication", "culture"]),
+  level: z.number().min(1).max(5),
+  projects: z.array(z.string()).default([]),
+  placeholder: z.boolean().default(false),
+});
+export type Skill = z.infer<typeof Skill>;
+
+/** ─── Reading list ───────────────────────────────────────────────────────── */
+
+export const Book = z.object({
+  id: z.string(),
+  title: z.string(),
+  author: z.string(),
+  year: z.number().int().optional(),
+  note: z.string().max(120).optional(),
+  placeholder: z.boolean().default(false),
+});
+export type Book = z.infer<typeof Book>;
+
+/** ─── Endurance / races ──────────────────────────────────────────────────── */
+
+export const Race = z.object({
+  id: z.string(),
+  name: z.string(),
+  distance: z.number(), // km
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  time: z.string().max(120), // e.g. "4:12:33"
+  kind: z.enum(["50m", "100m", "200m", "400m", "800m", "1500m", "5k", "10k", "half", "ultra"]),
+  place: z.string().max(120).optional(),
+  placeholder: z.boolean().default(false),
+});
+export type Race = z.infer<typeof Race>;
+
+/** ─── Now / current focus ────────────────────────────────────────────────── */
+
+export const NowItem = z.object({
+  id: z.string(),
+  label: z.string().max(120),
+  detail: z.string().max(280),
+  updated: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  placeholder: z.boolean().default(false),
+});
+export type NowItem = z.infer<typeof NowItem>;
