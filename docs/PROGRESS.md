@@ -6,8 +6,8 @@
 - [x] P2  App shell (header, footer, rulers, cursor point, theme)
 - [x] P3  Hero field (canvas random walk, ticker, live Luxembourg time)
 - [x] P4  Content layer + /work + case-study template
-- [ ] P5  Timeline f(t) (curve + ledger)
-- [ ] P6  Studies + skills graph
+- [x] P5  Timeline f(t) (curve + ledger)
+- [x] P6  Studies + skills graph
 - [ ] P7  About: Claims & Proofs + Endurance + /now
 - [ ] P8  Atlas globe
 - [ ] P9  Supabase: guestbook (Plane) + contact

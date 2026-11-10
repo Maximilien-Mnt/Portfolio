@@ -18,7 +18,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 
 import { projects } from "@/content/projects";
 import { timeline } from "@/content/timeline";
-import { studies } from "@/content/studies";
+import { studies, competitions } from "@/content/studies";
 import { skills } from "@/content/skills";
 import { books } from "@/content/books";
 import { races } from "@/content/races";
@@ -90,9 +90,20 @@ export function getNow(): typeof now {
   return now;
 }
 
-export function getCompetitions(): Competition[] {
-  return [];
+export function getCompetitions(): typeof competitions {
+  return competitions;
 }
+
+/* ── Favourite maths areas ── */
+
+export const favouriteMathAreas = [
+  "Calculus & Analysis",
+  "Probability & Statistics",
+  "Linear Algebra",
+  "Number Theory",
+  "Geometry",
+  "Differential Equations",
+];
 
 /* ── MDX loader ── */
 

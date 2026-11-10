@@ -48,6 +48,7 @@ export const Subject = z.object({
   language: z.enum(["EN", "DE", "FR"]),
   level: z.string().max(120),
   grade: z.number().min(1).max(6).optional(),
+  showGrade: z.boolean().default(false),
   placeholder: z.boolean().default(false),
 });
 export type Subject = z.infer<typeof Subject>;
