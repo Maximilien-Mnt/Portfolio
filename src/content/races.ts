@@ -4,6 +4,7 @@
 // ═════════════════════════════════════════════════════════════════════════════
 
 import { Race } from "./schema";
+import { z } from "zod";
 
 /**
  * Race properties used below:
@@ -14,7 +15,7 @@ import { Race } from "./schema";
  * - averageSpeedKmh: average speed in km/h (source value when supplied, otherwise calculated)
  * - notes: original note, or null when the CSV cell was empty
  */
-export const races = Race.parse(
+export const races = z.array(Race).parse(
 [
   {
     "id": "Course O-235",

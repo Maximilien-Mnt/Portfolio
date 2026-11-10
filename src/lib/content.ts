@@ -16,7 +16,16 @@ import rehypePrettyCode from "rehype-pretty-code";
 
 /* ── Content arrays (validated at module load in the source files) ── */
 
-export { projects, timeline, studies, skills, books, races, now } from "@/content/projects";
+import { projects } from "@/content/projects";
+import { timeline } from "@/content/timeline";
+import { studies } from "@/content/studies";
+import { skills } from "@/content/skills";
+import { books } from "@/content/books";
+import { races } from "@/content/races";
+import { now } from "@/content/now";
+import { Competition } from "@/content/schema";
+
+export { projects } from "@/content/projects";
 export { timeline as timelineExport } from "@/content/timeline";
 export { studies as studiesExport } from "@/content/studies";
 export { skills as skillsExport } from "@/content/skills";

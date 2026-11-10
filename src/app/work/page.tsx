@@ -1,4 +1,6 @@
-import { getProjects, getSkills } from "@/lib/content";
+import { getProjects } from "@/lib/content";
+import { skills } from "@/content/skills";
+import type { Skill } from "@/content/schema";
 import { Plate } from "@/components/ui/Plate";
 import { ViewToggle } from "@/components/work/ViewToggle";
 import { TypeFilter } from "@/components/work/TypeFilter";
@@ -41,7 +43,7 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
 
       {view === "grid" && <GridView projects={projects} />}
       {view === "ledger" && <LedgerView projects={projects} />}
-      {view === "map" && <SkillsMapView skills={getSkills()} />}
+      {view === "map" && <SkillsMapView skills={skills as unknown as Skill[]} />}
     </Plate>
   );
 }
