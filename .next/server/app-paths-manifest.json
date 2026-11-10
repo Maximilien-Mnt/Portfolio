@@ -2,17 +2,17 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
   "/work/page": "app/work/page.js",
-  "/about/page": "app/about/page.js",
+  "/atlas/page": "app/atlas/page.js",
   "/contact/page": "app/contact/page.js",
   "/colophon/page": "app/colophon/page.js",
-  "/atlas/page": "app/atlas/page.js",
+  "/notes/[slug]/page": "app/notes/[slug]/page.js",
   "/lab/page": "app/lab/page.js",
   "/notes/page": "app/notes/page.js",
-  "/plane/page": "app/plane/page.js",
-  "/now/page": "app/now/page.js",
   "/privacy/page": "app/privacy/page.js",
+  "/plane/page": "app/plane/page.js",
   "/timeline/page": "app/timeline/page.js",
-  "/notes/[slug]/page": "app/notes/[slug]/page.js",
+  "/studies/page": "app/studies/page.js",
   "/work/[slug]/page": "app/work/[slug]/page.js",
-  "/studies/page": "app/studies/page.js"
+  "/now/page": "app/now/page.js",
+  "/about/page": "app/about/page.js"
 }

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from '@vercel/analytics/next';
 import { fraunces, instrument, martian } from "@/lib/fonts";
 import { Providers } from "@/components/providers";
 import { site } from "@/config/site";
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CoordCursor />
           <Rulers />
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
