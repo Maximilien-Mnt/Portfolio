@@ -8,7 +8,7 @@
 - [x] P4  Content layer + /work + case-study template
 - [x] P5  Timeline f(t) (curve + ledger)
 - [x] P6  Studies + skills graph
-- [ ] P7  About: Claims & Proofs + Endurance + /now
+- [x] P7  About: Claims & Proofs + Endurance + /now
 - [ ] P8  Atlas globe
 - [ ] P9  Supabase: guestbook (Plane) + contact
 - [ ] P10 PostHog

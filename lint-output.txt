@@ -1,0 +1,23 @@
+
+ ÔÜá The Next.js plugin was not detected in your ESLint configuration. See https://nextjs.org/docs/basic-features/eslint#migrating-existing-config
+
+./src/app/about/page.tsx
+35:17  Error: Parsing error: Identifier expected.
+
+./src/components/sections/Claim.tsx
+15:17  Error: 'Claim' is already defined.  no-redeclare
+15:29  Warning: 'label' is defined but never used.  @typescript-eslint/no-unused-vars
+15:29  Error: 'label' is defined but never used.  no-unused-vars
+
+./src/components/sections/Header.tsx
+26:9  Warning: The 'closeMenu' function makes the dependencies of useCallback Hook (at line 33) change on every render. To fix this, wrap the definition of 'closeMenu' in its own useCallback() Hook.  react-hooks/exhaustive-deps
+26:9  Warning: The 'closeMenu' function makes the dependencies of useEffect Hook (at line 50) change on every render. To fix this, wrap the definition of 'closeMenu' in its own useCallback() Hook.  react-hooks/exhaustive-deps
+
+./src/components/viz/OriginField.tsx
+303:34  Warning: The ref value 'wrapperRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'wrapperRef.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+
+./src/lib/content.ts
+26:10  Warning: 'Competition' is defined but never used.  @typescript-eslint/no-unused-vars
+26:10  Error: 'Competition' is defined but never used.  no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
