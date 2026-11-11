@@ -1,0 +1,10 @@
+src/app/about/page.tsx(26,21): error TS2551: Property 'distanceKm' does not exist on type '{ id: string; name: string; distance: number; date: string; time: string; kind: "50m" | "100m" | "200m" | "400m" | "800m" | "1500m" | "5k" | "10k" | "half" | "ultra"; placeholder: boolean; place?: string | undefined; }'. Did you mean 'distance'?
+src/app/about/page.tsx(102,68): error TS2551: Property 'distanceKm' does not exist on type '{ id: string; name: string; distance: number; date: string; time: string; kind: "50m" | "100m" | "200m" | "400m" | "800m" | "1500m" | "5k" | "10k" | "half" | "ultra"; placeholder: boolean; place?: string | undefined; }'. Did you mean 'distance'?
+src/app/about/page.tsx(102,150): error TS2339: Property 'averageSpeedKmh' does not exist on type '{ id: string; name: string; distance: number; date: string; time: string; kind: "50m" | "100m" | "200m" | "400m" | "800m" | "1500m" | "5k" | "10k" | "half" | "ultra"; placeholder: boolean; place?: string | undefined; }'.
+src/app/layout.tsx(2,27): error TS2307: Cannot find module '@vercel/analytics/next' or its corresponding type declarations.
+src/app/now/page.tsx(13,14): error TS2339: Property 'map' does not exist on type '{ id: string; placeholder: boolean; label: string; detail: string; updated: string; }'.
+src/app/now/page.tsx(13,19): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/app/now/page.tsx(18,15): error TS2322: Type 'false | "bg-bg-2/50"' is not assignable to type 'string | undefined'.
+  Type 'boolean' is not assignable to type 'string'.
+src/app/now/page.tsx(33,24): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type '{ id: string; placeholder: boolean; label: string; detail: string; updated: string; }'.
+  Property '0' does not exist on type '{ id: string; placeholder: boolean; label: string; detail: string; updated: string; }'.

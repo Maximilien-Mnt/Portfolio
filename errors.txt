@@ -1,0 +1,8 @@
+src/components/viz/Globe.tsx(77,21): error TS1005: '=>' expected.
+src/components/viz/Globe.tsx(78,21): error TS1005: '=>' expected.
+src/components/viz/Globe.tsx(96,21): error TS1005: '=>' expected.
+src/components/viz/Globe.tsx(97,21): error TS1005: '=>' expected.
+src/components/viz/Globe.tsx(99,19): error TS1005: '=>' expected.
+src/components/viz/Globe.tsx(100,19): error TS1005: '=>' expected.
+src/components/viz/Globe.tsx(102,21): error TS1005: '=>' expected.
+src/components/viz/Globe.tsx(103,21): error TS1005: '=>' expected.
