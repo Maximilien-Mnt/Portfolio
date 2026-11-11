@@ -9,8 +9,8 @@
 - [x] P5  Timeline f(t) (curve + ledger)
 - [x] P6  Studies + skills graph
 - [x] P7  About: Claims & Proofs + Endurance + /now
-- [ ] P8  Atlas globe
-- [ ] P9  Supabase: guestbook (Plane) + contact
+- [x] P8  Atlas globe
+- [x] P9  Supabase: guestbook (Plane) + contact
 - [ ] P10 PostHog
 - [ ] P11 Command palette + terminal + easter eggs
 - [ ] P12 SEO, OG images, sitemap, JSON-LD
@@ -42,4 +42,5 @@
 - Reduced-motion fallback tested: all canvas/canvas transitions must have static final state
 - Cloudflare Turnstile + Supabase RLS need actual account setup (free tier limits: 2 active projects)
 - `SUPABASE_SERVICE_ROLE_KEY` and `TURNSTILE_SECRET_KEY` are server-only — never prefix with `NEXT_PUBLIC_`
+- P9: reads use the anon client (RLS enforced, approved-only); writes use the service-role admin client after Turnstile + honeypot + zod validation; `admin.ts` imports `server-only` so Next.js fails the build if the service-role module ever reaches client code; owner's Signal-colored point is designated by the optional public `NEXT_PUBLIC_OWNER_POINT_ID` row id (schema has no auth). `server-only` vendored locally + declared in devDeps because npm/pnpm are unavailable in this shell.
 - P2 shell: Header/Ticker/CoordCursor are client components (state/effects/events); Footer/Rulers stay server. Theme icon guarded by local mount state (next-themes 0.4.4 has no `mounted` export) to avoid hydration mismatch. `status` segment rendered literally ("online", TODO) deferred to P11/P14. Rulers gated via CSS media queries (pointer: coarse / reduced-motion / narrow).
