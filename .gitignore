@@ -1,0 +1,5 @@
+nnode_modules/
+.next/
+
+node_modules/
+.pnpm-store/
