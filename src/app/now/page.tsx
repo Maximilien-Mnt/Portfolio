@@ -1,8 +1,8 @@
-import { Metadata } from "next";
 import { Plate } from "@/components/ui/Plate";
 import { now } from "@/content/now";
+import { generateMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = { title: "Now" };
+export const metadata = generateMetadata("Now");
 
 export default function NowPage() {
   return (

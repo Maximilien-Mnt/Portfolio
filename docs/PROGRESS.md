@@ -11,8 +11,8 @@
 - [x] P7  About: Claims & Proofs + Endurance + /now
 - [x] P8  Atlas globe
 - [x] P9  Supabase: guestbook (Plane) + contact
-- [ ] P10 PostHog
-- [ ] P11 Command palette + terminal + easter eggs
+- [x] P10 PostHog
+- [x] P11 Command palette + terminal + easter eggs
 - [ ] P12 SEO, OG images, sitemap, JSON-LD
 - [ ] P13 Lab demos
 - [ ] P14 Notes (MDX + KaTeX)

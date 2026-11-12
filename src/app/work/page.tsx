@@ -7,6 +7,7 @@ import { TypeFilter } from "@/components/work/TypeFilter";
 import { GridView } from "@/components/work/GridView";
 import { LedgerView } from "@/components/work/LedgerView";
 import { SkillsMapView } from "@/components/work/SkillsMapView";
+import { generateMetadata } from "@/lib/metadata";
 
 interface WorkPageProps {
   searchParams: Promise<{ view?: string; type?: string }>;
@@ -21,6 +22,10 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
   const projects = typeFilter
     ? allProjects.filter((p) => p.type === typeFilter)
     : allProjects;
+
+  const metadata = generateMetadata("Work", undefined, {
+    pathname: "/work",
+  });
 
   return (
     <Plate coordinate="§04 · (x 0.00, y 0.00)">
@@ -47,3 +52,5 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
     </Plate>
   );
 }
+
+export const metadata = metadata;

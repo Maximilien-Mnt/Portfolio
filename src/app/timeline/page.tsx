@@ -1,9 +1,9 @@
-import { Metadata } from "next";
 import { Plate } from "@/components/ui/Plate";
 import { TimelineControls } from "@/components/timeline/TimelineControls";
 import { timeline } from "@/content/timeline";
+import { generateMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = { title: "Timeline" };
+export const metadata = generateMetadata("Timeline");
 
 export default function TimelinePage() {
   return (

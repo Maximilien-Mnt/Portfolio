@@ -1,7 +1,7 @@
-import { Metadata } from "next";
 import { Plate } from "@/components/ui/Plate";
+import { generateMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = { title: "Lab" };
+export const metadata = generateMetadata("Lab");
 
 export default function LabPage() {
   return (

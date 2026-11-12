@@ -4,7 +4,9 @@ import { favouriteMathAreas } from "@/lib/content";
 import { studies, competitions, books } from "@/content/studies";
 import type { Subject, Competition, Book } from "@/content/schema";
 
-export const metadata: Metadata = { title: "Studies" };
+export const metadata = {
+  title: "Studies",
+};
 
 export default function StudiesPage() {
   const subjects = studies as unknown as Subject[];
