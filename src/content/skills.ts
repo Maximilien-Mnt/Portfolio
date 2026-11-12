@@ -3,9 +3,10 @@
 // Category: code · maths · markets · endurance · communication · culture
 // ═════════════════════════════════════════════════════════════════════════════
 
+import { z } from "zod";
 import { Skill } from "./schema";
 
-export const skills = Skill.parse([
+export const skills = z.array(Skill).parse([
   {
     id: "react-native",
     name: "React / React Native",

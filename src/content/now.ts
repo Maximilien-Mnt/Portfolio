@@ -2,9 +2,10 @@
 // now.ts — placeholder (placeholder: true). Update monthly.
 // ═════════════════════════════════════════════════════════════════════════════
 
+import { z } from "zod";
 import { NowItem } from "./schema";
 
-export const now = NowItem.parse([
+export const now = z.array(NowItem).parse([
   {
     id: "now-1",
     label: "Pulse",

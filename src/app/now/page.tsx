@@ -15,7 +15,7 @@ export default function NowPage() {
           return (
             <div
               key={item.id}
-              className={hasPlaceholder && "bg-bg-2/50"}
+              className={hasPlaceholder ? "bg-bg-2/50" : undefined}
             >
               {hasPlaceholder && (
                 <span className="text-xs text-signal-ink uppercase tracking-wider absolute top-2 left-2">
@@ -30,7 +30,7 @@ export default function NowPage() {
       </div>
 
       <p className="mt-6 text-fg-3 text-center">
-        Last updated: {now[0].updated}
+        Last updated: {now[0]?.updated}
       </p>
     </Plate>
   );

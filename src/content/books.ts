@@ -2,9 +2,10 @@
 // books.ts — placeholder (placeholder: true). Rewrite with real books.
 // ═════════════════════════════════════════════════════════════════════════════
 
+import { z } from "zod";
 import { Book } from "./schema";
 
-export const books = Book.parse([
+export const books = z.array(Book).parse([
   {
     id: "book-1",
     title: "The Name of the Rose",

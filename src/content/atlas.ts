@@ -6,7 +6,7 @@ export const University = z.object({
   status: z.enum(["exploring", "applying", "submitted", "decided"]),
 });
 
-export type University = z.infer<typeof University>;
+
 
 export const Region = z.object({
   label: z.string(),
@@ -15,7 +15,7 @@ export const Region = z.object({
   universities: z.array(University).default([]),
 });
 
-export type Region = z.infer<typeof Region>;
+
 
 export const regions = {
   UK: {
@@ -26,7 +26,7 @@ export const regions = {
       { name: "University of Oxford", public: true, status: "decided" },
       { name: "University of Cambridge", public: true, status: "decided" },
     ],
-  } as Region,
+  } as z.infer<typeof Region>,
   US: {
     label: "United States",
     capital: { lat: 38.9072, lon: -77.0369 },
@@ -35,7 +35,7 @@ export const regions = {
       { name: "Harvard University", public: true, status: "decided" },
       { name: "Massachusetts Institute of Technology", public: true, status: "decided" },
     ],
-  } as Region,
+  } as z.infer<typeof Region>,
   CA: {
     label: "Canada",
     capital: { lat: 45.4215, lon: -75.6972 },
@@ -44,7 +44,7 @@ export const regions = {
       { name: "University of Toronto", public: true, status: "decided" },
       { name: "McGill University", public: true, status: "decided" },
     ],
-  } as Region,
+  } as z.infer<typeof Region>,
   FR: {
     label: "France",
     capital: { lat: 48.8566, lon: 2.3522 },
@@ -53,7 +53,7 @@ export const regions = {
       { name: "Université PSL", public: true, status: "decided" },
       { name: "École Normale Supérieure", public: true, status: "decided" },
     ],
-  } as Region,
+  } as z.infer<typeof Region>,
   SG: {
     label: "Singapore",
     capital: { lat: 1.3521, lon: 103.8198 },
@@ -62,10 +62,10 @@ export const regions = {
       { name: "National University of Singapore", public: true, status: "decided" },
       { name: "Nanyang Technological University", public: true, status: "decided" },
     ],
-  } as Region,
-} as Record<string, Region>;
+  } as z.infer<typeof Region>,
+} as Record<string, z.infer<typeof Region>>;
 
 // Type-safe lookup - key must be a valid region key
-export function getRegion(key: keyof typeof regions): Region {
+export function getRegion(key: keyof typeof regions): z.infer<typeof Region> {
   return regions[key]!; // Key is guaranteed by the type parameter
 }

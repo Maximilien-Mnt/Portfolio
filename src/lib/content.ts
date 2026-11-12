@@ -23,7 +23,6 @@ import { skills } from "@/content/skills";
 import { books } from "@/content/books";
 import { races } from "@/content/races";
 import { now } from "@/content/now";
-import { Competition } from "@/content/schema";
 
 export { projects } from "@/content/projects";
 export { timeline as timelineExport } from "@/content/timeline";
@@ -119,7 +118,22 @@ export interface MDXContent {
 /** Read a `content/projects/*.mdx` file, parse frontmatter and serialise. */
 export async function getMDXContent(slug: string): Promise<MDXContent> {
   const filePath = path.join(PROJECTS_DIR, `${slug}.mdx`);
-  const source = fs.readFileSync(filePath, "utf-8");
+  let source: string;
+  try {
+    source = fs.readFileSync(filePath, "utf-8");
+  } catch {
+    // Missing project page -> return a placeholder so the build does not crash.
+    const placeholder = await serialize("Placeholder", {
+      parseFrontmatter: false,
+    });
+    return {
+      source: "",
+      frontmatter: { title: "Placeholder" },
+      headings: [],
+      mdx: placeholder,
+    };
+  }
+
   const { content, data } = matter(source);
 
   const mdx = await serialize(content, {
@@ -132,7 +146,7 @@ export async function getMDXContent(slug: string): Promise<MDXContent> {
     },
   });
 
-  const headings = extractHeadings(source);
+  const headings = extractHeadings(content);
 
   return { source, frontmatter: data, headings, mdx };
 }

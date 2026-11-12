@@ -47,7 +47,7 @@ export const Subject = z.object({
   name: z.string(),
   language: z.enum(["EN", "DE", "FR"]),
   level: z.string().max(120),
-  grade: z.number().min(1).max(6).optional(),
+  grade: z.number().min(1).max(6).nullable().optional(),
   showGrade: z.boolean().default(false),
   placeholder: z.boolean().default(false),
 });
@@ -91,11 +91,12 @@ export type Book = z.infer<typeof Book>;
 
 export const Race = z.object({
   id: z.string(),
-  name: z.string(),
-  distance: z.number(), // km
+  name: z.string().optional(),
+  distanceKm: z.number(), // km
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  time: z.string().max(120), // e.g. "4:12:33"
-  kind: z.enum(["50m", "100m", "200m", "400m", "800m", "1500m", "5k", "10k", "half", "ultra"]),
+  time: z.string().max(120).optional(), // e.g. "4:12:33"
+  kind: z.enum(["50m", "100m", "200m", "400m", "800m", "1500m", "5k", "10k", "half", "ultra"]).optional(),
+  averageSpeedKmh: z.number().optional(),
   place: z.string().max(120).optional(),
   placeholder: z.boolean().default(false),
 });

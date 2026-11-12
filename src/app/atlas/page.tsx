@@ -1,7 +1,6 @@
 import { Plate } from "@/components/ui/Plate";
 import { Button } from "@/components/ui/Button";
 import { Globe } from "@/components/viz/Globe";
-import { regions } from "@/content/atlas";
 
 const countryMap: Record<string, string> = {
   "United Kingdom": "UK",
@@ -44,7 +43,6 @@ export default async function AtlasPage() {
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4 mt-6">
         {regionKeys.map((key) => {
-          const region = regions[key];
           const onClick = () => {
             const params = new URLSearchParams();
             params.set("country", key);

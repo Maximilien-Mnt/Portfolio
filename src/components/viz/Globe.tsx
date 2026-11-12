@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { regions } from "@/content/atlas";
 
@@ -11,7 +11,6 @@ const projectOntoPlane = (lon: number, lat: number): { x: number; y: number } =>
   const sinφ = Math.sin(φ);
   const cosφ = Math.cos(φ);
   const cosλ = Math.cos(λ);
-  const sinλ = Math.sin(λ);
   const x = cosλ * cosφ; // normalized -1 to 1
   const y = sinφ;
   // Scale and shift to viewBox -200 -100 400 200
@@ -20,7 +19,7 @@ const projectOntoPlane = (lon: number, lat: number): { x: number; y: number } =>
 
 export function Globe({ visitorCountry }: { visitorCountry?: string }) {
   const reduced = useReducedMotion();
-  const [progress, setProgress] = useState(0);
+  const [, setProgress] = useState(0);
 
   // Draw-on animation: 0 → 1 over 900ms
   useEffect(() => {

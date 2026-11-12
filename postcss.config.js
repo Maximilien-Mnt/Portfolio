@@ -1,2 +1,5 @@
-import tailwindcss from "@tailwindcss/postcss";
-export default tailwindcss();
+export default {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};

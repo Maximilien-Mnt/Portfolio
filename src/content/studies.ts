@@ -3,9 +3,10 @@
 // See docs/01 evidence checklist before publishing.
 // ═════════════════════════════════════════════════════════════════════════════
 
+import { z } from "zod";
 import { Subject, Competition, Book } from "./schema";
 
-export const studies = Subject.parse([
+export const studies = z.array(Subject).parse([
   {
     id: "french",
     name: "French",
@@ -55,7 +56,7 @@ export const studies = Subject.parse([
 
 export type { Subject };
 
-export const competitions = Competition.parse([
+export const competitions = z.array(Competition).parse([
   {
     id: "kangourou",
     name: "Kangourou des Mathématiques",
@@ -84,7 +85,7 @@ export const competitions = Competition.parse([
 
 export type { Competition };
 
-export const books = Book.parse([
+export const books = z.array(Book).parse([
   {
     id: "book-1",
     title: "The Name of the Rose",

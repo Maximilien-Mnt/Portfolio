@@ -99,7 +99,7 @@ export default function AboutPage() {
       <div className="mt-8">
         <EnduranceStrip />
         <p className="mt-2 text-xs text-moss-600 font-mono">
-          {races.length} races · {races.reduce((sum, r) => sum + r.distanceKm, 0).toFixed(1)} km total · Best speed: {Math.max(...races.map((r) => r.averageSpeedKmh), 0).toFixed(1)} km/h
+          {races.length} races · {races.reduce((sum, r) => sum + r.distanceKm, 0).toFixed(1)} km total · Best speed: {Math.max(...races.map((r) => r.averageSpeedKmh ?? 0), 0).toFixed(1)} km/h
         </p>
       </div>
     </Plate>
