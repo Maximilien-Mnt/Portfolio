@@ -3,10 +3,13 @@
 import { useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import posthog from "posthog-js";
-import { PostHogProvider as PHProvider } from "@posthog/react";
 
-interface ProvidersProps {
-  children: React.ReactNode;
+// Safely capture an event if posthog is initialized.
+export function track(event: string, props?: Record<string, unknown>) {
+  const ph = (posthog as any);
+  if (ph && typeof ph?.capture === "function") {
+    ph.capture(event, props || {});
+  }
 }
 
 /**
@@ -15,11 +18,11 @@ interface ProvidersProps {
  * - Initialises posthog-js only when NEXT_PUBLIC_POSTHOG_KEY is set
  * - Uses privacy-friendly defaults (memory persistence, no session replay,
  *   no autocapture of text inputs, cookie-less)
- * - Registers super-property site="portfolio"
- * - Captures $pageview on App Router route changes
- * - Exposes a `track(event, props)` helper via context
+ * - Registers super-property site="portfolio" on init
+ * - Captures  on App Router route changes
+ * - Exports 	rack(event, props) for use in client components
  */
-export function Providers({ children }: ProvidersProps) {
+export function Providers({ children }: { children: React.ReactNode }) {
   const [initialized, setInitialized] = useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -67,40 +70,14 @@ export function Providers({ children }: ProvidersProps) {
     setInitialized(true);
   }, [pathname]);
 
-  // Track helper exposed as a global utility (used by components via import)
-  // We attach it to window for dev console access; components import their own helper
-  const track = (
-    event: string,
-    props?: Record<string, unknown>
-  ): void => {
-    const ph = (posthog as any);
-    if (ph && typeof ph?.capture === "function") {
-      ph.capture(event, props || {});
-    }
-  };
-
-  // Capture $pageview on route changes
+  // Capture  on route changes
   useEffect(() => {
     if (!initialized) return;
-    const handleChange = () => {
-      track("$pageview", { path: pathname });
-    };
-    // App Router fires popstate/history events; we subscribe via usePathname re-render
-    // and also listen to the navigation change
-    const removeListener = searchParams?.subscribe?.(searchParams, handleChange);
-    // Run initial capture
-    handleChange();
-    return () => {
-      removeListener?.();
-    };
+    // Initial capture on mount
+    track("$pageview", { path: pathname });
+    // The usePathname hook causes re-renders on navigation in App Router,
+    // so the effect re-fires automatically when the user navigates.
   }, [pathname, initialized]);
 
-  return (
-    <PHProvider
-      // We pass the already-initialized posthog instance so @posthog/react can use it
-      client={posthog}
-    >
-      {children}
-    </PHProvider>
-  );
+  return <>{children}</>;
 }

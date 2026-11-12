@@ -1,0 +1,83 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import posthog from "posthog-js";
+
+// Safely capture an event if posthog is initialized.
+export function track(event: string, props?: Record<string, unknown>) {
+  const ph = (posthog as any);
+  if (ph && typeof ph?.capture === "function") {
+    ph.capture(event, props || {});
+  }
+}
+
+/**
+ * PostHogProvider – client-side only.
+ *
+ * - Initialises posthog-js only when NEXT_PUBLIC_POSTHOG_KEY is set
+ * - Uses privacy-friendly defaults (memory persistence, no session replay,
+ *   no autocapture of text inputs, cookie-less)
+ * - Registers super-property site="portfolio" on init
+ * - Captures  on App Router route changes
+ * - Exports 	rack(event, props) for use in client components
+ */
+export function Providers({ children }: { children: React.ReactNode }) {
+  const [initialized, setInitialized] = useState(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    // Only init if the env key exists – the site must work with NO keys
+    const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+    if (!key) {
+      setInitialized(true);
+      return;
+    }
+
+    const config: Record<string, unknown> = {
+      // Privacy-first: memory persistence = in-page only, no cookies, no session replay
+      api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://eu.i.posthog.com",
+      persistence: "memory",
+      disable_session_recording: true,
+      autocapture: false,
+      // Do NOT autocapture text inputs/textarea/SELECT elements
+      css_selector_ignorelist: [
+        "input",
+        "textarea",
+        "select",
+        "password",
+        "ph-no-capture",
+        ".ph-no-autocapture",
+      ],
+      // Capture pageview on every route change (App Router SPA pattern)
+      capture_pageview: "history_change",
+      // Never process person profiles for privacy
+      person_profiles: "never",
+      // Advanced: disable /flags endpoint to avoid unnecessary requests when not needed
+      advanced_disable_flags: true,
+    };
+
+    try {
+      posthog.init(key, config);
+      // Register the "site" super-property once on init
+      posthog.register({ site: "portfolio" });
+    } catch (e) {
+      // Silently fail – the site must work without PostHog
+      // (per security & privacy rules: features degrade gracefully)
+    }
+
+    setInitialized(true);
+  }, [pathname]);
+
+  // Capture  on route changes
+  useEffect(() => {
+    if (!initialized) return;
+    // Initial capture on mount
+    track("", { path: pathname });
+    // The usePathname hook causes re-renders on navigation in App Router,
+    // so the effect re-fires automatically when the user navigates.
+  }, [pathname, initialized]);
+
+  return <>{children}</>;
+}
