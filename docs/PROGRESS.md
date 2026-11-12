@@ -13,8 +13,8 @@
 - [x] P9  Supabase: guestbook (Plane) + contact
 - [x] P10 PostHog
 - [x] P11 Command palette + terminal + easter eggs
-- [ ] P12 SEO, OG images, sitemap, JSON-LD
-- [ ] P13 Lab demos
+- [x] P12 SEO, OG images, sitemap, JSON-LD
+- [x] P13 Lab demos
 - [ ] P14 Notes (MDX + KaTeX)
 - [ ] P15 Accessibility + performance + mobile pass
 - [ ] P16 Deploy (Vercel + Cloudflare) + launch checklist
