@@ -1,0 +1,32 @@
+---
+title: "What I'd redo in Pulse"
+date: "2026-11-13"
+tags: ["pulse", "reflection", "software"]
+summary: "First thoughts on what I would rebuild or redesign in the Pulse app."
+draft: true
+---
+
+# What I'd redo in Pulse
+
+Reflections from building Pulse (2024–2026). Every figure and quoted line is a **placeholder** — replace with verified facts before publishing.
+
+## High-level takeaways
+
+- The feed architecture that works well in a monorepo may not scale the same way in a solo project.
+- Early investment in developer tooling (type-safe APIs, CI checks) pays off more than UI polish.
+- Moving moderation to the edge (Cloudflare Workers) reduced origin load and improved latency.
+
+## What to revisit
+
+1. **Feed pagination** — cursor-based pagination works, but a simpler chronological list might be more robust for early users.
+2. **Moderation pipeline** — the rule engine was runtime; an edge-first approach is cleaner.
+3. **Onboarding flow** — the first-run trophy and guided tour proved effective for retention.
+
+## Links
+
+- [GitHub repository](https://github.com/Maximilien-Mnt/pulse) (placeholder)
+- [PostHog analytics](https://posthog.com/) (placeholder)
+
+---
+
+*This is a DRAFT note. Replace with your own content before publishing.*

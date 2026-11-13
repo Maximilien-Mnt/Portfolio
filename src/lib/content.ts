@@ -23,8 +23,10 @@ import { skills } from "@/content/skills";
 import { books } from "@/content/books";
 import { races } from "@/content/races";
 import { now } from "@/content/now";
+import { notes } from "@/content/notes";
 
 export { projects } from "@/content/projects";
+export { notes as notesExport } from "@/content/notes";
 export { timeline as timelineExport } from "@/content/timeline";
 export { studies as studiesExport } from "@/content/studies";
 export { skills as skillsExport } from "@/content/skills";

@@ -15,7 +15,12 @@
 - [x] P11 Command palette + terminal + easter eggs
 - [x] P12 SEO, OG images, sitemap, JSON-LD
 - [x] P13 Lab demos
-- [ ] P14 Notes (MDX + KaTeX)
+- [x] P14 Notes (MDX + KaTeX)
+  - Added 2 DRAFT starter notes in `src/content/notes/`
+  - Updated `src/lib/content.ts` to load and export notes with MDX serialization (remark-math, rehype-katex, rehype-pretty-code)
+  - Created `/notes` page listing active (non-draft) notes with reading time, tags, and links
+  - Created `/notes/[slug]` page rendering individual MDX notes with KaTeX math, pretty-code blocks, heading anchors, and sticky TOC
+  - Draft notes hidden via `notFound()` when `frontmatter.draft === true`
 - [ ] P15 Accessibility + performance + mobile pass
 - [ ] P16 Deploy (Vercel + Cloudflare) + launch checklist
 - [ ] P17 (optional) Private HQ applications tracker
