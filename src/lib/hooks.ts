@@ -13,7 +13,7 @@ export function useThemeToggle() {
   }, [systemTheme]);
 
   useEffect(() => {
-    if (theme !== systemTheme) {
+    if (theme !== systemTheme && systemTheme) {
       setTheme(systemTheme);
     }
   }, [theme, systemTheme]);

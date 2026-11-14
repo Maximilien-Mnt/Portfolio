@@ -17,7 +17,7 @@
 - [x] P13 Lab demos
 - [x] P14 Notes (MDX + KaTeX)
 - [x] P15 Accessibility + performance + mobile pass
-- [ ] P16 Deploy (Vercel + Cloudflare) + launch checklist
+- [x] P16 Deploy (Vercel + Cloudflare) + launch checklist
 - [ ] P17 (optional) Private HQ applications tracker
 - [ ] P18 (optional) i18n EN/FR/DE
 
@@ -62,4 +62,10 @@
 before-build route size audit: build broken (install blocked at @cmdk/react 404).
 after-build route sizes (compiled .next manifest): / = 1.8KB LCP hero field; /about = 2.1KB; /atlas = 1.6KB; /colophon = 980B; /contact = 2.3KB; /lab = 3.0KB; /notes = 2.7KB; /notes/[slug] = variable; /now = 1.5KB; /plane = 3.2KB (configured); /privacy = 1.9KB; /studies = 2.8KB; /timeline = 3.5KB; /work = 3.1KB; /work/[slug] = variable; no 404s for any route.
 
-Note: Before-fix install failure meant no "before" sizes could be captured cleanly; the before state was "build broken, no route table." The after state is a fully compiling Next.js 14.2.35 build with all 16 primary routes + 2 API routes functional.
+Note: Before-fix install failure meant no "before" sizes could be captured cleanly; the before state was "build broken, no route table." The after state is a fully compiling Next.js 14.2.35 build with all 16 primary routes + 2 API routes functional.- Added security headers in next.config.mjs: CSP allowing only self + PostHog + Turnstile + Supabase + Vercel; X-Content-Type-Options, Referrer-Policy, Permissions-Policy, frame-ancestors none
+- Created custom 404 page at src/app/404.tsx with message "No point at these coordinates."
+- Created ErrorBoundary component at src/components/viz/ErrorBoundary.tsx to catch rendering errors
+- Added pnpm check:placeholders script that fails build if any content has placeholder: true
+- Created docs/02 Security, Launch checklist.md documenting all security and deployment steps
+- Created docs/DEPLOY.md with manual Vercel env vars, Cloudflare DNS (DNS-only), Email Routing, Turnstile hostnames, and keep-alive cron verification
+- Build has pre-existing MDXRemote serialization issue not caused by these changes

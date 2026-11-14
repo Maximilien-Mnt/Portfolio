@@ -15,10 +15,11 @@ export function useKeyboardNavigation() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       // Don't fire if typing in an input or textarea
+      const active = document.activeElement as HTMLInputElement | HTMLTextAreaElement | HTMLElement;
       if (
-        document.activeElement?.tagName === "INPUT" ||
-        document.activeElement?.tagName === "TEXTAREA" ||
-        document.activeElement?.isContentEditable
+        active.tagName === "INPUT" ||
+        active.tagName === "TEXTAREA" ||
+        (active as HTMLElement).isContentEditable
       ) {
         // Reset the g press if user starts typing
         gKeyPresses.lastPress = 0;

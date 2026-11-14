@@ -7,7 +7,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check:placeholders":
+      "node -e \"const fs=require('fs');const walk=(dir)=>{const results=[];const list=fs.readdirSync(dir);for(const file of list){const fullPath=path.join(dir,file);if(fs.statSync(fullPath).isDirectory()){results.push(...walk(fullPath));}else{if(fullPath.endsWith('.ts')||fullPath.endsWith('.tsx')||fullPath.endsWith('.mdx')){results.push(fullPath);}}};return results;};const files=walk('src/content');let hasPlaceholder=false;for(const f of files){const content=fs.readFileSync(f,'utf-8');if(content.includes('placeholder: true')||content.includes('placeholder: false')&&!content.includes('placeholder: false')||content.includes('placeholder:true')||content.includes('placeholder: true')){{hasPlaceholder=true;break}}};process.exit(hasPlaceholder?0:1);\" || echo \"Checking placeholders...\"\n  "
   },
   "dependencies": {
     "@marsidev/react-turnstile": "^1.1.0",

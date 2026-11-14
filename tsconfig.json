@@ -16,7 +16,7 @@
     "noUncheckedIndexedAccess": true,
     "jsx": "preserve",
     "baseUrl": ".",
-    "ignoreDeprecations": "6.0",
+    
     "paths": {
       "@/*": ["src/*"]
     },
