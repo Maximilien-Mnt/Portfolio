@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import { Plate } from "@/components/ui/Plate";
 import { favouriteMathAreas } from "@/lib/content";
 import { studies, competitions, books } from "@/content/studies";

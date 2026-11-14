@@ -1,16 +1,14 @@
-import { Metadata, notFound } from "next";
+import { notFound } from "next/navigation";
 import { Plate } from "@/components/ui/Plate";
 import { MDXRemote } from "next-mdx-remote";
-import { getMDXContent, type MDXContent } from "@/lib/content";
+import { getMDXContent } from "@/lib/content";
 import { extractHeadings, type TocHeading } from "@/lib/content";
 
 export const generateStaticParams = () => [];
 
-export const metadata = (slug: string) => {
-  return {
-    title: "Notes",
-  };
-};
+export const metadata = () => ({
+  title: "Notes",
+});
 
 function TOC({ headings }: { headings: TocHeading[] }) {
   if (!headings.length) return null;
@@ -44,7 +42,7 @@ export default async function NotePage({
 }: {
   params: { slug: string };
 }) {
-  const { frontmatter, mdx } = await getMDXContent(params.slug);
+  const { frontmatter, mdx, source } = await getMDXContent(params.slug);
 
   // Hide drafts in production
   if (frontmatter.draft) {
@@ -52,14 +50,14 @@ export default async function NotePage({
   }
 
   // Extract headings from source for TOC
-  const headings: TocHeading[] = extractHeadings(mdx.source || "");
+  const headings: TocHeading[] = extractHeadings(source || "");
 
   return (
     <Plate coordinate="§07 · (x 0.00, y 0.00)">
-      <h1 className="font-display text-2xl">{frontmatter.title}</h1>
+      <h1 className="font-display text-2xl">{String(frontmatter.title ?? "")}</h1>
 
       <MDXRemote
-        {...mdx as unknown as Record<string, unknown>}
+        {...mdx}
         components={{
           h1: (props: any) => <h1 className="font-display text-2xl" {...props} />,
           h2: (props: any) => <h2 className="font-display text-xl" {...props} />,

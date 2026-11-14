@@ -1,10 +1,5 @@
 import { Fraunces, Instrument_Sans, Martian_Mono } from "next/font/google";
 
-import { Container } from "next/dist/compote templatetag";
-
-import { CoordCursor } from "@/components/brand/CoordCursor";
-import { OrginField } from "@/components/sections/OriginField";
-
 // Font definitions - must be at module level for next/font
 const frauncesFont = Fraunces({
   subsets: ["latin"],
@@ -27,12 +22,10 @@ const martianFont = Martian_Mono({
 
 export default function OpengraphImage({
   title,
-  description,
   name,
   coords,
 }: {
   title: string;
-  description: string;
   name: string;
   coords: string;
 }) {

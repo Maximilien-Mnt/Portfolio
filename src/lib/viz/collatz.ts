@@ -20,7 +20,6 @@ export function collatz(n: number): number[] {
 
   const trajectory: number[] = [n];
   let current = n;
-  let steps = 0;
 
   while (current !== 1) {
     if (current % 2 === 0) {
@@ -29,7 +28,6 @@ export function collatz(n: number): number[] {
       current = 3 * current + 1;
     }
     trajectory.push(current);
-    steps++;
   }
 
   return trajectory;

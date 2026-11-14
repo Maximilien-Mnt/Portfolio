@@ -1,5 +1,5 @@
 import { type ReactNode } from "react";
-import { Head } from "next/head";
+import Head from "next/head";
 import { site } from "@/config/site";
 
 /** JSON-LD Person schema injected into <head>. */

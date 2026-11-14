@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState, useRef } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { Tooltip } from "@/components/ui/Tooltip";
 import { Button } from "@/components/ui/Button";
@@ -24,10 +24,11 @@ export interface PlaneBoardProps {
   canCreate?: boolean;
 }
 
-const DOT = 20;
+const DOT = 44;
 
 export function PlaneBoard({ points, ownerPointId, canCreate = false }: PlaneBoardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const [open, setOpen] = useState(false);
   const [formX, setFormX] = useState(0);
   const [formY, setFormY] = useState(0);
@@ -48,6 +49,10 @@ export function PlaneBoard({ points, ownerPointId, canCreate = false }: PlaneBoa
     setFormX(nx); setFormY(ny); setToken(null); setStatus("idle");
     setErrorMessage(""); setOpen(true);
   }, [canCreate]);
+
+  useEffect(() => {
+    if (open) formRef.current?.focus();
+  }, [open]);
 
   const onSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,7 +95,7 @@ export function PlaneBoard({ points, ownerPointId, canCreate = false }: PlaneBoa
         );
       })}
       {open && canCreate && (
-        <form onSubmit={onSubmit} className="absolute z-30 w-[270px]">
+        <form ref={formRef} tabIndex={-1} onSubmit={onSubmit} className="absolute z-30 w-[270px] outline-none">
           <div style={{ left: `${Math.round(formX * 100)}%`, top: `${Math.round(formY * 100)}%`, transform: "translate(-50%, -110%)", position: "absolute" }}>
             <div className="plate p-4">
               <h3 className="font-display text-sm">Leave a mark</h3>

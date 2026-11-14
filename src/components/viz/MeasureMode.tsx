@@ -1,8 +1,9 @@
 /** Measure mode - overlays 32px grid and shows coordinates of hovered elements */
 "use client";
 
-import {useState, useEffect, useRef, useCallback} from "react";
-import {useFeatureFlags} from "@/lib/feature-flags";
+import {useState, useEffect, useRef} from "react";
+import { cn } from "@/lib/utils";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 /** Coordinate display component */
 export function MeasureMode({
@@ -14,8 +15,9 @@ export function MeasureMode({
 }) {
   const [isOpen, setIsOpen] = useState(propIsOpen ?? false);
   const [coordinates, setCoordinates] = useState<{x: number; y: number} | null>(null);
-  const [gridOverlay, setGridOverlay] = useState<boolean | null>(null);
+  const [gridOverlay] = useState<boolean | null>(null);
   const hoverRef = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
 
   // Track mouse position and grid coordinates
   useEffect(() => {
@@ -40,7 +42,7 @@ export function MeasureMode({
 
       return () => {
         container.removeEventListener("mousemove", handleMouseMove);
-        container.removeEventListener("mouseleave", handleLeave);
+        container.removeEventListener("mouseleave", handleMouseLeave);
       };
     }
   }, []);
@@ -73,6 +75,7 @@ export function MeasureMode({
         className={cn(
           "absolute inset-0",
           gridOverlay &&
+            !reduced &&
             `background-image:
             linear-gradient(var(--grid) 1px, transparent 1px),
             linear-gradient(90deg, var(--grid) 1px, transparent 1px);

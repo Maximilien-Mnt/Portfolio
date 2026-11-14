@@ -10,7 +10,7 @@ export default function LabPage() {
     >
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <Link href="/lab/gbm" className="group border border-line rounded-md overflow-hidden hover:bg-fg-2 transition-colors duration-240 ease-snap">
+          <Link href="/lab" className="group border border-line rounded-md overflow-hidden hover:bg-fg-2 transition-colors duration-240 ease-snap">
             <div className="p-6 whitespace-nowrap">
               <div className="flex items-baseline gap-2 text-signal mb-2">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="flex-shrink-0">
@@ -26,7 +26,7 @@ export default function LabPage() {
             </div>
           </Link>
 
-          <Link href="/lab/collatz" className="group border border-line rounded-md overflow-hidden hover:bg-fg-2 transition-colors duration-240 ease-snap">
+          <Link href="/lab" className="group border border-line rounded-md overflow-hidden hover:bg-fg-2 transition-colors duration-240 ease-snap">
             <div className="p-6 whitespace-nowrap">
               <div className="flex items-baseline gap-2 text-azure mb-2">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="flex-shrink-0">
@@ -40,7 +40,7 @@ export default function LabPage() {
             </div>
           </Link>
 
-          <Link href="/lab/dca" className="group border border-line rounded-md overflow-hidden hover:bg-fg-2 transition-colors duration-240 ease-snap">
+          <Link href="/lab" className="group border border-line rounded-md overflow-hidden hover:bg-fg-2 transition-colors duration-240 ease-snap">
             <div className="p-6 whitespace-nowrap">
               <div className="flex items-baseline gap-2 text-gold mb-2">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="flex-shrink-0">
@@ -56,7 +56,7 @@ export default function LabPage() {
             </div>
           </Link>
 
-          <Link href="/lab/graph" className="group border border-line rounded-md overflow-hidden hover:bg-fg-2 transition-colors duration-240 ease-snap">
+          <Link href="/lab" className="group border border-line rounded-md overflow-hidden hover:bg-fg-2 transition-colors duration-240 ease-snap">
             <div className="p-6 whitespace-nowrap">
               <div className="flex items-baseline gap-2 text-moss mb-2">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="flex-shrink-0">

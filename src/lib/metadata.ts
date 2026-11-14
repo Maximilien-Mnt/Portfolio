@@ -12,7 +12,7 @@ import { site } from "@/config/site";
 export function generateMetadata(
   title: string,
   description?: string,
-  opts?: { canonical?: string }
+  opts?: { canonical?: string; pathname?: string }
 ): Metadata {
   const canonical = opts?.canonical ?? `${site.url}${opts?.pathname ?? ""}`;
 

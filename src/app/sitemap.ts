@@ -1,6 +1,5 @@
 import { type MetadataRoute } from "next";
 import { getProjects } from "@/lib/content";
-import { site } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -15,6 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/now",
   ] as const;
 
+  const projects = getProjects() as {
+    slug: string;
+    placeholder: boolean;
+    updated?: string;
+  }[];
+
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
   return [
@@ -24,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changefreq: route.startsWith("/work") ? "weekly" : "monthly",
       priority: route.startsWith("/work") ? 0.7 : 0.5,
     })),
-    ...getProjects()
+    ...projects
       .filter((p) => !p.placeholder)
       .map((p) => ({
         url: `${baseUrl}/work/${p.slug}`,

@@ -1,6 +1,5 @@
 import { Plate } from "@/components/ui/Plate";
-import { Button } from "@/components/ui/Button";
-import { Globe } from "@/components/viz/Globe";
+import Link from "next/link";
 
 export const metadata = {
   title: "Atlas",
@@ -8,12 +7,6 @@ export const metadata = {
 };
 
 export default async function AtlasPage() {
-  // Read visitor country from Vercel IP country header (server component)
-  // In Next.js on Vercel, x-vercel-ip-country is set by the platform
-  const { headers } = await import("next/headers");
-  const h = headers();
-  const vercelCountry = h.get("x-vercel-ip-country");
-
   return (
     <Plate coordinate="§08 · (x 0.00, y 0.00)">
       <h1 className="font-display text-2xl">Atlas</h1>
@@ -23,18 +16,11 @@ export default async function AtlasPage() {
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4 mt-6">
         {["UK", "US", "CA", "FR", "SG"].map((key) => {
-          const onClick = () => {
-            const params = new URLSearchParams();
-            params.set("country", key);
-            const href = `/atlas?${params.toString()}`;
-            window.history.pushState({}, "", href);
-          };
-
           return (
-            <Button
+            <Link
               key={key}
-              onClick={onClick}
-              className="flex flex-col items-center py-4 px-3 text-sm border border(var(--line)) hover:bg(var(--bg-2))"
+              href={`/atlas?country=${key}`}
+              className="flex flex-col items-center py-4 px-3 text-sm border border-line hover:bg-bg-2 transition-colors duration-120 ease-snap"
             >
               <span className="font-mono text-fg-3 mb-1">{key}</span>
               <span className="text-fg-2">
@@ -48,7 +34,7 @@ export default async function AtlasPage() {
                   ? "France"
                   : "Singapore"}
               </span>
-            </Button>
+            </Link>
           );
         })}
       </div>

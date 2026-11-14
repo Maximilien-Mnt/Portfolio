@@ -15,7 +15,8 @@ function EnduranceStrip() {
       aria-label="Endurance elevation profile"
     >
       <path
-        className="moss-500"
+        stroke="var(--moss)"
+        strokeWidth={1}
         d="M0 0L20 5L40 12L60 7L80 15L100 0"
       />
       <g className="peak-labels">
@@ -24,7 +25,7 @@ function EnduranceStrip() {
             key={race.id}
             x={(i / (totalRaces - 1)) * 100}
             y={race.distanceKm + 5}
-            className="text-[0.6rem] text-moss-600 font-mono uppercase tracking-widest"
+            className="text-[0.6rem] text-fg-2 font-mono uppercase tracking-widest"
           >
             {race.id.split("-")[0]}
           </text>
@@ -98,7 +99,7 @@ export default function AboutPage() {
       {/* EnduranceStrip */}
       <div className="mt-8">
         <EnduranceStrip />
-        <p className="mt-2 text-xs text-moss-600 font-mono">
+        <p className="mt-2 text-xs text-fg-2 font-mono">
           {races.length} races · {races.reduce((sum, r) => sum + r.distanceKm, 0).toFixed(1)} km total · Best speed: {Math.max(...races.map((r) => r.averageSpeedKmh ?? 0), 0).toFixed(1)} km/h
         </p>
       </div>

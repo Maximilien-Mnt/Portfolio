@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import posthog from "posthog-js";
 
 // Safely capture an event if posthog is initialized.
@@ -25,7 +25,6 @@ export function track(event: string, props?: Record<string, unknown>) {
 export function Providers({ children }: { children: React.ReactNode }) {
   const [initialized, setInitialized] = useState(false);
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     // Only init if the env key exists – the site must work with NO keys
@@ -62,7 +61,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       posthog.init(key, config);
       // Register the "site" super-property once on init
       posthog.register({ site: "portfolio" });
-    } catch (e) {
+    } catch {
       // Silently fail – the site must work without PostHog
       // (per security & privacy rules: features degrade gracefully)
     }

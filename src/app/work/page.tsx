@@ -23,10 +23,6 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
     ? allProjects.filter((p) => p.type === typeFilter)
     : allProjects;
 
-  const metadata = generateMetadata("Work", undefined, {
-    pathname: "/work",
-  });
-
   return (
     <Plate coordinate="§04 · (x 0.00, y 0.00)">
       <h1 className="font-display text-2xl">Work</h1>
@@ -53,4 +49,4 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
   );
 }
 
-export const metadata = metadata;
+export const metadata = generateMetadata("Work", undefined, { pathname: "/work" });

@@ -32,7 +32,7 @@ export function TypeFilter() {
       <select
         id="type-filter"
         name="type"
-        className="min-h-[44px] rounded border border-line bg-bg-2 px-2 font-mono text-[0.72rem] text-fg-2 focus:border-signal focus:outline-none"
+        className="min-h-[44px] rounded border border-line bg-bg-2 px-2 font-mono text-[0.72rem] text-fg-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-3"
         defaultValue=""
         onChange={(e) => update(e.target.value)}
       >

@@ -74,9 +74,11 @@ export function Globe({ visitorCountry }: { visitorCountry?: string }) {
       width="440"
       height="440"
       viewBox="-200 -100 400 200"
+      role="img"
       aria-label="Globe of destinations from Luxembourg"
       style={reduced ? {} : { touchAction: "none" }}
     >
+      <title>Great-circle arcs from Luxembourg to each destination.</title>
       {/* Graticule */}
       <g stroke="var(--grid)" strokeWidth="0.5">
         <path d="M-200,0L200,0" fill="none" />

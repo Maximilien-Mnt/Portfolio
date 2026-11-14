@@ -1,7 +1,7 @@
 /** Keyboard navigation: g then h/w/t/a */
 "use client";
 
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 
 /** State to track 'g' key press */
 const gKeyPresses = {
